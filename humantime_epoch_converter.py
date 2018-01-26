@@ -2,6 +2,7 @@
 
 import datetime
 import itertools
+import re
 import sys
 import time
 
@@ -22,7 +23,7 @@ class DateTime:
     '''
     def __init__(self, str_dt):
         self.str_dt_ = str_dt
-        self.str_dt = self.str_dt_.strip().lower()  # strip-lowercasing
+        self.str_dt = self.str_dt_.strip().strip(':').lower()
 
     def check_get(self):
         '''Method to call from instance.'''
@@ -31,7 +32,29 @@ class DateTime:
     def get_epoch_now(self):
         '''Returns the current time in Epoch.'''
         return int(time.mktime(time.localtime()))
+    
+    def _mktime(self, tm_year=None, tm_mon=None, tm_mday=None,
+                tm_hour=None, tm_min=None, tm_sec=None):
+        '''Takes specifications, returns Epoch using `time.mktime`.'''
+        today_ = time.localtime()
+        return int(time.mktime(time.strptime('{}-{}-{}_{}:{}:{}'.format(
+            tm_year or today_.tm_year,
+            tm_mon or today_.tm_mon,
+            tm_mday or today_.tm_mday,
+            tm_hour or today_.tm_hour,
+            tm_min or today_.tm_min,
+            tm_sec or today_.tm_sec
+            ),
+            '%Y-%m-%d_%H:%M:%S'
+        )))
 
+    def _gen_iter(self, iter_, newlen, fillval='00'):
+        '''Returns an iterator with the iter_ filled
+        with fillval upto newlen.
+        '''
+        new_iter = itertools.chain(iter_, itertools.cycle((fillval,)))
+        return itertools.islice(new_iter, newlen)
+        
     def _check_format(self):
         '''Checks the formatting and calls the
         appropriate method.
@@ -42,11 +65,36 @@ class DateTime:
         #     'today': self.today,
         # }
         if '+' in self.str_dt or '-' in self.str_dt:
-            return self.add_sub()
+            return self._add_sub()
+        elif 'yesterday' in self.str_dt:
+            return self._yestr_today_tmrw(self.str_dt, day_='yesterday')
         elif 'today' in self.str_dt:
-            return self.get_epoch_now()
+            return self._yestr_today_tmrw(self.str_dt, day_='today')
+        elif 'tomorrow' in self.str_dt:
+            return self._yestr_today_tmrw(self.str_dt, day_='tomorrow')
         
-    def add_sub(self):
+    def _yestr_today_tmrw(self, in_str_dt, day_='today'):
+        time_ = re.split(r'[\s:]+', in_str_dt)
+        try:
+            time_.remove('at')
+        except ValueError:
+            pass
+        time_ = list(self._gen_iter(time_, 4))
+        mday_ = time.localtime().tm_mday
+        tm_mday = mday_ if day_ == 'today' else (mday_-1 if
+                                                 day_ == 'yesterday'
+                                                 else mday_+1)
+        return self._mktime(
+            tm_mday=tm_mday,
+            tm_hour=str(time_[1]),
+            tm_min=str(time_[2]),
+            tm_sec=str(time_[3])
+        )
+
+    def _tomorrow(self):
+        pass
+        
+    def _add_sub(self):
         '''`str_dt` contains `+/-`.'''
         before, after = self.str_dt.split('+') if '+' in self.str_dt else \
                         self.str_dt.split('-')
