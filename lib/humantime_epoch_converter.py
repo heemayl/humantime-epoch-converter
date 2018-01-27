@@ -5,6 +5,7 @@ import datetime
 import itertools
 import operator
 import re
+import sys
 import time
 
 
@@ -209,3 +210,12 @@ def main(arg):
 
 if __name__ == '__main__':
     pass
+    if not len(sys.argv) == 2:
+        print('There must be exactly one argument as string')
+        exit(2)
+    arg = sys.argv[1]
+    out = main(arg)
+    if not out:
+        exit(1)
+    print_msg(out)
+    exit(0)
