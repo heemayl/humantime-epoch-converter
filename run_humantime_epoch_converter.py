@@ -4,7 +4,7 @@
 # library directly from command line. Takes one argument -- the datetime
 # string, and returns the Epoch using the library.
 # See the `humantime_epoch_converter` module's docstring for details.
-
+import logging
 import sys
 
 from lib.humantime_epoch_converter import main, print_msg

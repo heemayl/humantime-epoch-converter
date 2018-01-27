@@ -1,20 +1,31 @@
-## `humantime-epoch-converter` is a Python library for converting the human specified datetime into Epoch (seconds since 1st January, 1970).
+## `humantime-epoch-converter` is a Python library for converting the *human datetime specifications* into Epoch (seconds since 1st January, 1970).
 
-The following input datetime specifications are supported (case-insensitive):
+Some examples of the supported input datetime specifications (**all specifications are case-insensitive**):
+
+- `yesterday` (assumed `yesterday at 00:00:00`)
 
 - `today at 7:30 PM`
 
 - `now + 7 hours 30 minutes`
 
-- `tomorrow at 8 PM`
+- `tomorrow 8`
 
-- `14:45:04` (assumed today)
+- `today 14:45:04`
 
-- `2018-06-18_18:09:23`
+- `next sunday` (assumed `next sunday 00:00:00`)
 
-- `2018-08-14` (assumed `00:00:00`)
+- `next wed - 1 hr 30 mins 42 seconds'
 
-- `2019-01-21 17:56` (assumed `2019-01-21 17:56:00`)
+- `today at 5:05 - 1 hour 40 seconds`
 
-- **...Work In Progress**
+
+### I would suggest you to try and find out for any supported formats.
+
+---
+
+Here are some examples of running `run_humantime_epoch_converter.py` script
+
+```bash
+
+
 

@@ -127,14 +127,14 @@ class DateTime:
             '''Returns the day to go if the `day_num`
             is behind today's weekday.
             '''
-            cycle_ = itertools.cycle(range(calendar.SUNDAY))  # SUNDAY==6
+            cycle_ = itertools.cycle(range(calendar.SUNDAY + 1))  # SUNDAY==6
             today_wday = time.localtime().tm_wday
             while True:
-                if today_wday == next(cycle_):
+                if next(cycle_) == today_wday:
                     break
             days = 1
             while True:
-                if day_num != next(cycle_):
+                if next(cycle_) != day_num:
                     days += 1
                     continue
                 break
@@ -142,7 +142,7 @@ class DateTime:
 
         # Days to go
         after = _get_days_to_go(day_num) if time.localtime().tm_wday >= \
-                day_num else day_num - time.localtime().tm_wday
+                day_num else (day_num - time.localtime().tm_wday)
         # Getting the YY, mm, dd
         target_ymd = (datetime.datetime.now() +
                       datetime.timedelta(days=after)).timetuple()[:3]
@@ -209,3 +209,4 @@ def main(arg):
 
 if __name__ == '__main__':
     pass
+
