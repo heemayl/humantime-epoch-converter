@@ -3,8 +3,8 @@
 # Wrapper script to call to leverage the `humantime_epoch_converter`
 # library directly from command line. Takes one argument -- the datetime
 # string, and returns the Epoch using the library.
-# See the `humantime_epoch_converter` module's docstring for details.
-import logging
+# See the `humantime_epoch_converter` module's docstring/README for details.
+
 import sys
 
 from lib.humantime_epoch_converter import main, print_msg

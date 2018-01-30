@@ -1,4 +1,4 @@
-'''Foo'''
+'''Library for converting human time specifications into Epoch.'''
 
 import calendar
 import datetime
@@ -128,7 +128,7 @@ class DateTime:
             '''Returns the day to go if the `day_num`
             is behind today's weekday.
             '''
-            cycle_ = itertools.cycle(range(calendar.SUNDAY))  # SUNDAY==6
+            cycle_ = itertools.cycle(range(calendar.SUNDAY + 1))  # SUNDAY==6
             today_wday = time.localtime().tm_wday
             while True:
                 if today_wday == next(cycle_):

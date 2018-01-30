@@ -14,12 +14,12 @@ Some examples of the supported input datetime specifications (**all specificatio
 
 - `next sunday` (assumed `next sunday 00:00:00`)
 
-- `next wed - 1 hr 30 mins 42 seconds'
+- `next wed - 1 hr 30 mins 42 seconds`
 
 - `today at 5:05 - 1 hour 40 seconds`
 
 
-### I would suggest you to try and find out for any supported formats.
+### I would suggest you to try and find out for any supported formats. Feel free to request missing one(s), which is(are) expected to be supported.
 
 ---
 
