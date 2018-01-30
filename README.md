@@ -1,5 +1,11 @@
 ## `humantime-epoch-converter` is a Python library for converting the *human datetime specifications* into Epoch (seconds since 1st January, 1970).
 
+---
+
+#### The one-in-all library file is `lib/humantime_epoch_converter.py`, and the wrapper script to run directly from shell is `run_humantime_epoch_converter.py`.
+
+---
+
 Some examples of the supported input datetime specifications (**all specifications are case-insensitive**):
 
 - `yesterday` (assumed `yesterday at 00:00:00`)
