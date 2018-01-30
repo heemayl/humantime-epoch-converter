@@ -23,9 +23,54 @@ Some examples of the supported input datetime specifications (**all specificatio
 
 ---
 
-Here are some examples of running `run_humantime_epoch_converter.py` script
+Here are some examples of running the `run_humantime_epoch_converter.py` wrapper script directly from shell:
+
 
 ```bash
 
+$ ./run_humantime_epoch_converter.py
 
+There must be exactly one argument -- a datetime string. See the `humantime_epoch_converter` library module's docstring for details.
+
+
+$ ./run_humantime_epoch_converter.py yesterday
+
+1517162400
+
+
+$ ./run_humantime_epoch_converter.py 'today at 6:50'
+
+1517273400
+
+
+$ ./run_humantime_epoch_converter.py 'tomorrow 16:40 + 2 hr'
+
+1517402400
+
+
+$ ./run_humantime_epoch_converter.py 'next sunday 23'
+
+1517763600
+
+
+$ ./run_humantime_epoch_converter.py 'next sunday at 23'
+
+1517763600
+
+
+$ ./run_humantime_epoch_converter.py 'next wed at 2:30 + 48 minutes 21 secs'
+
+1517347101
+
+
+$ ./run_humantime_epoch_converter.py 'now'
+
+1517311409
+
+
+$ ./run_humantime_epoch_converter.py 'now + 1 hr 2 min 3 sec'
+
+1517315150
+
+```
 
