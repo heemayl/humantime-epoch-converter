@@ -182,11 +182,11 @@ class DateTime:
         '''Adds hr/min/sec to time.'''
         hrs = mins = secs = 0
         for val, name in itertools.zip_longest(after_[::2], after_[1::2]):
-            if name in {'hrs', 'hr', 'hours', 'hour'}:
+            if name in {'hours', 'hour', 'hrs', 'hr', 'h'}:
                 hrs = int(val)
-            elif name in {'minutes', 'minute', 'mins', 'min'}:
+            elif name in {'minutes', 'minute', 'mins', 'min', 'm'}:
                 mins = int(val)
-            elif name in {'seconds', 'second', 'secs', 'sec', None}:
+            elif name in {'seconds', 'second', 'secs', 'sec', 's', None}:
                 secs = int(val)
             else:
                 raise DateTimeException('Ambiguous input: {}'
