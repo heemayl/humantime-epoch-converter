@@ -23,11 +23,11 @@ class DateTime:
     to Python datetime object and converts that into Epoch eventually.
     '''
     def __init__(self, str_dt):
-        self.str_dt = re.sub(r'([+-]\s+\d+)([a-z]+)',
-                             r'\1 \2', str_dt.lower().strip().strip(':')
-                             .replace('+', ' + ')
-                             .replace('-', ' - ')
-                             )
+        self.str_dt = ' '.join(re.split(r'(\d+)([a-z]+)',
+                                        str_dt.lower().strip().strip(':')
+                                        .replace('+', ' + ')
+                                        .replace('-', ' - ')
+        ))
         self.list_dt = self.str_dt.split()
         
     def check_get(self):
